@@ -4,4 +4,19 @@ kind: Kustomization
 resources:
   - ../../base/compact/controlplane
 
+patches:
+  - target:
+      group: lvm.topolvm.io
+      kind: LVMCluster
+      version: v1alpha1
+      name: lvmcluster-default
+    path: patches/lvmcluster-default.yaml
 
+#  - target:
+#      group: nmstate.io
+#      version: v1
+#      kind: NodeNetworkConfigurationPolicy
+#    patch: |-
+#      - op: replace
+#        path: /metadata/name
+#        value: 
