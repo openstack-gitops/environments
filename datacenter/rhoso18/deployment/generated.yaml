@@ -809,5 +809,5 @@ spec:
       state: up
       type: ethernet
   nodeSelector:
-    kubernetes.io/hostname: worker-2
+    kubernetes.io/hostname: hac-05.ha.eng.rdu2.dc.redhat.com
     node-role.kubernetes.io/worker: ""
