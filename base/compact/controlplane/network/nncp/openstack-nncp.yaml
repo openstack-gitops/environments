@@ -1,7 +1,7 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: osp-enp6s0-worker-1
+  name: enps60
 spec:
   desiredState:
     interfaces:
