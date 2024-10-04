@@ -156,4 +156,4 @@ patches:
     patch: |-
       - op: replace
         path: /spec/storageClass
-        value: lvmcluster-default
+        value: lvms-vg1

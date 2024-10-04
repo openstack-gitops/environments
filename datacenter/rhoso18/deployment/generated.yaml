@@ -261,7 +261,7 @@ spec:
               type: LoadBalancer
         replicas: 3
   secret: osp-secret
-  storageClass: lvmcluster-default
+  storageClass: lvms-vg1
   swift:
     enabled: true
     proxyOverride:
