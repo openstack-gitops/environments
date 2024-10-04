@@ -2,19 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  - storage
   - ../../base/compact/controlplane
 
 components:
   - https://github.com/openstack-gitops/rhoso-gitops/base/gitops/components/annotations
 
 patches:
-  - target:
-      group: lvm.topolvm.io
-      kind: LVMCluster
-      version: v1alpha1
-      name: lvmcluster-default
-    path: patches/lvmcluster-default.yaml
-
   - target:
       group: metallb.io
       version: v1beta1
