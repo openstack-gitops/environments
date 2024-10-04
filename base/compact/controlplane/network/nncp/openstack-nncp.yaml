@@ -1,7 +1,7 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: enps60
+  name: osp-worker
 spec:
   desiredState:
     interfaces:
@@ -53,7 +53,7 @@ spec:
         base-iface: enp6s0
         id: 22
         reorder-headers: true
-    - description: Configuring enp6s0
+    - description: ethernet interface
       ipv4:
         address:
         - ip: 192.168.122.10
@@ -67,5 +67,5 @@ spec:
       state: up
       type: ethernet
   nodeSelector:
-    kubernetes.io/hostname: worker-1
+    kubernetes.io/hostname: worker
     node-role.kubernetes.io/worker: ""

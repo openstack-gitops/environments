@@ -4,4 +4,14 @@ kind: Kustomization
 resources:
   - ../nncp
 
-namePrefix: osp-worker-1-
+nameSuffix: "-1"
+
+patches:
+  - target:
+      group: nmstate.io
+      version: v1
+      kind: NodeNetworkConfigurationPolicy
+    patch: |-
+      - op: replace
+        path: "/spec/nodeSelector/kubernetes.io~1hostname"
+        value: worker-1
