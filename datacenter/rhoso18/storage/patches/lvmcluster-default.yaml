@@ -5,7 +5,7 @@
     deviceSelector:
       forceWipeDevicesAndDestroyAllData: true
       paths:
-        - /dev/disk/by-path/pci-0000:01:00.0-scsi-0:0:1:0
+        - /dev/disk/by-path/pci-0000:01:00.0-scsi-0:0:0:0
     fstype: xfs
     name: vg1
     thinPoolConfig:
