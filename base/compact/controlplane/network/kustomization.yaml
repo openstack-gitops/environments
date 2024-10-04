@@ -8,3 +8,4 @@ resources:
   - openstack-net-attach-def.yaml
   - openstack-ipaddresspools.yaml
   - openstack-l2advertisement.yaml
+  - openstack_netconfig.yaml

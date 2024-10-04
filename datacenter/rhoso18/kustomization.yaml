@@ -12,11 +12,194 @@ patches:
       name: lvmcluster-default
     path: patches/lvmcluster-default.yaml
 
-#  - target:
-#      group: nmstate.io
-#      version: v1
-#      kind: NodeNetworkConfigurationPolicy
-#    patch: |-
-#      - op: replace
-#        path: /metadata/name
-#        value: 
+  - target:
+      group: metallb.io
+      version: v1beta1
+      kind: L2Advertisement
+      name: ctlplane
+    patch: |-
+      - op: replace
+        path: /spec/interfaces
+        value:
+          - eno2
+
+  - target:
+      group: nmstate.io
+      version: v1
+      kind: NodeNetworkConfigurationPolicy
+    patch: |-
+      - op: add
+        path: /metadata/labels
+        value:
+          osp/nncm-config-type: standard
+
+  - target:
+      group: nmstate.io
+      version: v1
+      kind: NodeNetworkConfigurationPolicy
+      name: osp-worker-0
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: "hac-03.ha.eng.rdu2.dc.redhat.com"
+      - op: replace
+        path: /spec/nodeSelector/kubernetes.io~1hostname
+        value: "hac-03.ha.eng.rdu2.dc.redhat.com"
+      - op: replace
+        path: /spec/desiredState/interfaces/0/vlan/base-iface
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/0/vlan/id
+        value: 1207
+      - op: replace
+        path: /spec/desiredState/interfaces/1/vlan/base-iface
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/1/vlan/id
+        value: 1208
+      - op: replace
+        path: /spec/desiredState/interfaces/2/vlan/base-iface
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/2/vlan/id
+        value: 1209
+      - op: replace
+        path: /spec/desiredState/interfaces/3/name
+        value: eno2
+
+
+  - target:
+      group: nmstate.io
+      version: v1
+      kind: NodeNetworkConfigurationPolicy
+      name: osp-worker-1
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: "hac-04.ha.eng.rdu2.dc.redhat.com"
+      - op: replace
+        path: /spec/nodeSelector/kubernetes.io~1hostname
+        value: "hac-04.ha.eng.rdu2.dc.redhat.com"
+      - op: replace
+        path: /spec/desiredState/interfaces/0/vlan/base-iface
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/0/vlan/id
+        value: 1207
+      - op: replace
+        path: /spec/desiredState/interfaces/1/vlan/base-iface
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/1/vlan/id
+        value: 1208
+      - op: replace
+        path: /spec/desiredState/interfaces/2/vlan/base-iface
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/2/vlan/id
+        value: 1209
+      - op: replace
+        path: /spec/desiredState/interfaces/3/name
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/0/ipv4/address/0/ip
+        value: "172.17.0.11"
+      - op: replace
+        path: /spec/desiredState/interfaces/1/ipv4/address/0/ip
+        value: "172.18.0.11"
+      - op: replace
+        path: /spec/desiredState/interfaces/2/ipv4/address/0/ip
+        value: "172.19.0.11"
+      - op: replace
+        path: /spec/desiredState/interfaces/3/ipv4/address/0/ip
+        value: "192.168.122.11"
+
+  - target:
+      group: nmstate.io
+      version: v1
+      kind: NodeNetworkConfigurationPolicy
+      name: osp-worker-2
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: "hac-05.ha.eng.rdu2.dc.redhat.com"
+      - op: replace
+        path: /spec/nodeSelector/kubernetes.io~1hostname
+        value: "hac-05.ha.eng.rdu2.dc.redhat.com"
+      - op: replace
+        path: /spec/desiredState/interfaces/0/vlan/base-iface
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/0/vlan/id
+        value: 1207
+      - op: replace
+        path: /spec/desiredState/interfaces/1/vlan/base-iface
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/1/vlan/id
+        value: 1208
+      - op: replace
+        path: /spec/desiredState/interfaces/2/vlan/base-iface
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/2/vlan/id
+        value: 1209
+      - op: replace
+        path: /spec/desiredState/interfaces/3/name
+        value: eno2
+      - op: replace
+        path: /spec/desiredState/interfaces/0/ipv4/address/0/ip
+        value: "172.17.0.12"
+      - op: replace
+        path: /spec/desiredState/interfaces/1/ipv4/address/0/ip
+        value: "172.18.0.12"
+      - op: replace
+        path: /spec/desiredState/interfaces/2/ipv4/address/0/ip
+        value: "172.19.0.12"
+      - op: replace
+        path: /spec/desiredState/interfaces/3/ipv4/address/0/ip
+        value: "192.168.122.12"
+
+  - target:
+      group: network.openstack.org
+      version: v1beta1
+      kind: NetConfig
+    patch: |-
+      - op: replace
+        path: /spec/networks/0/dnsDomain
+        value: "ctlplane.rhoso18.lmadsen-devel.hosted.upshift.rdu2.redhat.com"
+      - op: replace
+        path: /spec/networks/1/dnsDomain
+        value: "internalapi.rhoso18.lmadsen-devel.hosted.upshift.rdu2.redhat.com"
+      - op: replace
+        path: /spec/networks/2/dnsDomain
+        value: "external.rhoso18.lmadsen-devel.hosted.upshift.rdu2.redhat.com"
+      - op: replace
+        path: /spec/networks/3/dnsDomain
+        value: "storage.rhoso18.lmadsen-devel.hosted.upshift.rdu2.redhat.com"
+      - op: replace
+        path: /spec/networks/4/dnsDomain
+        value: "tenant.rhoso18.lmadsen-devel.hosted.upshift.rdu2.redhat.com"
+      - op: replace
+        path: /spec/networks/0/subnets/0/gateway
+        value: "192.168.122.10"
+      - op: remove
+        path: /spec/networks/1/subnets/0/excludeAddresses
+      - op: replace
+        path: /spec/networks/1/subnets/0/vlan
+        value: 1207
+      - op: replace
+        path: /spec/networks/3/subnets/0/vlan
+        value: 1208
+      - op: replace
+        path: /spec/networks/4/subnets/0/vlan
+        value: 1209
+
+  - target:
+      group: core.openstack.org
+      version: v1beta1
+      kind: OpenStackControlPlane
+    patch: |-
+      - op: replace
+        path: /spec/storageClass
+        value: lvmcluster-default
