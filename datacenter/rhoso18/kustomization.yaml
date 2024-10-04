@@ -4,6 +4,9 @@ kind: Kustomization
 resources:
   - ../../base/compact/controlplane
 
+components:
+  - https://github.com/openstack-gitops/rhoso-gitops/base/gitops/components/annotations
+
 patches:
   - target:
       group: lvm.topolvm.io

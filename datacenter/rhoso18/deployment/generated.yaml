@@ -1,6 +1,9 @@
 apiVersion: core.openstack.org/v1beta1
 kind: OpenStackControlPlane
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "10"
   name: openstack-control-plane
   namespace: openstack
 spec:
@@ -319,6 +322,9 @@ spec:
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"
   name: ctlplane
   namespace: openstack
 spec:
@@ -339,6 +345,9 @@ spec:
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"
   name: internalapi
   namespace: openstack
 spec:
@@ -359,6 +368,9 @@ spec:
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"
   name: storage
   namespace: openstack
 spec:
@@ -379,6 +391,9 @@ spec:
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"
   name: tenant
   namespace: openstack
 spec:
@@ -399,6 +414,8 @@ spec:
 apiVersion: lvm.topolvm.io/v1alpha1
 kind: LVMCluster
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   finalizers:
   - lvmcluster.topolvm.io
   name: lvmcluster-default
@@ -421,6 +438,9 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
   name: ctlplane
   namespace: metallb-system
 spec:
@@ -432,6 +452,9 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
   name: internalapi
   namespace: metallb-system
 spec:
@@ -443,6 +466,9 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
   name: storage
   namespace: metallb-system
 spec:
@@ -454,6 +480,9 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
   name: tenant
   namespace: metallb-system
 spec:
@@ -465,6 +494,9 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "4"
   name: ctlplane
   namespace: metallb-system
 spec:
@@ -476,6 +508,9 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "4"
   name: internalapi
   namespace: metallb-system
 spec:
@@ -487,6 +522,9 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "4"
   name: storage
   namespace: metallb-system
 spec:
@@ -498,6 +536,9 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "4"
   name: tenant
   namespace: metallb-system
 spec:
@@ -509,6 +550,9 @@ spec:
 apiVersion: network.openstack.org/v1beta1
 kind: NetConfig
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "5"
   name: openstacknetconfig
   namespace: openstack
 spec:
@@ -564,6 +608,9 @@ spec:
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
   labels:
     osp/nncm-config-type: standard
   name: hac-03.ha.eng.rdu2.dc.redhat.com
@@ -638,6 +685,9 @@ spec:
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
   labels:
     osp/nncm-config-type: standard
   name: hac-04.ha.eng.rdu2.dc.redhat.com
@@ -712,6 +762,9 @@ spec:
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
   labels:
     osp/nncm-config-type: standard
   name: hac-05.ha.eng.rdu2.dc.redhat.com
@@ -780,5 +833,5 @@ spec:
       state: up
       type: ethernet
   nodeSelector:
-    kubernetes.io/hostname: hac-05.ha.eng.rdu2.dc.redhat.com
+    kubernetes.io/hostname: worker-2
     node-role.kubernetes.io/worker: ""
