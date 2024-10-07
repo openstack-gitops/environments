@@ -157,3 +157,15 @@ patches:
       - op: replace
         path: /spec/storageClass
         value: lvms-vg1
+      - op: replace
+        path: /spec/dns/template/options
+        value:
+          - key: server
+            values:
+            - 10.6.0.50
+          - key: server
+            values:
+            - 10.6.0.51
+          - key: server
+            values:
+            - 10.6.0.52

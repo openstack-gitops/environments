@@ -63,10 +63,13 @@ spec:
       options:
       - key: server
         values:
-        - 192.168.122.1
+        - 10.6.0.50
       - key: server
         values:
-        - 192.168.122.2
+        - 10.6.0.51
+      - key: server
+        values:
+        - 10.6.0.52
       override:
         service:
           metadata:
