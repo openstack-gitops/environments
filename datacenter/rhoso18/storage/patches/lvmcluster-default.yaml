@@ -1,0 +1,14 @@
+- op: replace
+  path: /spec/storage/deviceClasses/0
+  value:
+    default: true
+    deviceSelector:
+      forceWipeDevicesAndDestroyAllData: true
+      paths:
+        - /dev/disk/by-path/pci-0000:01:00.0-scsi-0:0:0:0
+    fstype: xfs
+    name: vg1
+    thinPoolConfig:
+      name: thin-pool-1
+      overprovisionRatio: 10
+      sizePercent: 90

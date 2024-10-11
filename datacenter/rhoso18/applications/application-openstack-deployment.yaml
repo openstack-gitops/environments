@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: openstack-deployment
+  namespace: openshift-gitops
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    kustomize:
+      patches:
+      - patch: |-
+          - op: add
+            path: /metadata/labels
+            value:
+              argocd.argoproj.io/managed-by: openshift-gitops
+        target:
+          kind: Namespace
+    path: datacenter/rhoso18/deployment
+    repoURL: https://github.com/openstack-gitops/environments.git
+    targetRevision: base/example
+  syncPolicy:
+    automated: {}
+
